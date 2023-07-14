@@ -1,172 +1,234 @@
 import WarrantModule from "./WarrantModule";
-import WarrantClient from "../WarrantClient";
-import { CreatePermissionParams, ListPermissionOptions, UpdatePermissionParams } from "../types/Permission";
+import Auth4FlowClient from "../Auth4FlowClient";
+import {
+  CreatePermissionParams,
+  ListPermissionOptions,
+  UpdatePermissionParams,
+} from "../types/Permission";
 import { ObjectType } from "../types/ObjectType";
 import Warrant, { WarrantObject } from "../types/Warrant";
 
 export default class Permission implements WarrantObject {
-    permissionId: string;
-    name?: string;
-    description?: string;
+  permissionId: string;
+  name?: string;
+  description?: string;
 
-    constructor(permissionId: string, name?: string, description?: string) {
-        this.permissionId = permissionId;
-        this.name = name;
-        this.description = description;
+  constructor(permissionId: string, name?: string, description?: string) {
+    this.permissionId = permissionId;
+    this.name = name;
+    this.description = description;
+  }
+
+  //
+  // Static methods
+  //
+  public static async create(
+    permission: CreatePermissionParams
+  ): Promise<Permission> {
+    try {
+      const response = await Auth4FlowClient.httpClient.post({
+        url: "/v1/permissions",
+        data: permission,
+      });
+
+      return new Permission(
+        response.permissionId,
+        response.name,
+        response.description
+      );
+    } catch (e) {
+      throw e;
     }
+  }
 
-    //
-    // Static methods
-    //
-    public static async create(permission: CreatePermissionParams): Promise<Permission> {
-        try {
-            const response = await WarrantClient.httpClient.post({
-                url: "/v1/permissions",
-                data: permission,
-            });
+  public static async get(permissionId: string): Promise<Permission> {
+    try {
+      const response = await Auth4FlowClient.httpClient.get({
+        url: `/v1/permissions/${permissionId}`,
+      });
 
-            return new Permission(response.permissionId, response.name, response.description);
-        } catch (e) {
-            throw e;
-        }
+      return new Permission(
+        response.permissionId,
+        response.name,
+        response.description
+      );
+    } catch (e) {
+      throw e;
     }
+  }
 
-    public static async get(permissionId: string): Promise<Permission> {
-        try {
-            const response = await WarrantClient.httpClient.get({
-                url: `/v1/permissions/${permissionId}`,
-            });
+  public static async update(
+    permissionId: string,
+    permission: UpdatePermissionParams
+  ): Promise<Permission> {
+    try {
+      const response = await Auth4FlowClient.httpClient.put({
+        url: `/v1/permissions/${permissionId}`,
+        data: permission,
+      });
 
-            return new Permission(response.permissionId, response.name, response.description);
-        } catch (e) {
-            throw e;
-        }
+      return new Permission(
+        response.permissionId,
+        response.name,
+        response.description
+      );
+    } catch (e) {
+      throw e;
     }
+  }
 
-    public static async update(permissionId: string, permission: UpdatePermissionParams): Promise<Permission> {
-        try {
-            const response = await WarrantClient.httpClient.put({
-                url: `/v1/permissions/${permissionId}`,
-                data: permission,
-            });
-
-            return new Permission(response.permissionId, response.name, response.description);
-        } catch (e) {
-            throw e;
-        }
+  public static async delete(permissionId: string): Promise<void> {
+    try {
+      return await Auth4FlowClient.httpClient.delete({
+        url: `/v1/permissions/${permissionId}`,
+      });
+    } catch (e) {
+      throw e;
     }
+  }
 
-    public static async delete(permissionId: string): Promise<void> {
-        try {
-            return await WarrantClient.httpClient.delete({
-                url: `/v1/permissions/${permissionId}`,
-            });
-        } catch (e) {
-            throw e;
-        }
+  public static async listPermissions(
+    listOptions: ListPermissionOptions = {}
+  ): Promise<Permission[]> {
+    try {
+      const response = await Auth4FlowClient.httpClient.get({
+        url: "/v1/permissions",
+        params: listOptions,
+      });
+
+      return response.map(
+        (permission: Permission) =>
+          new Permission(
+            permission.permissionId,
+            permission.name,
+            permission.description
+          )
+      );
+    } catch (e) {
+      throw e;
     }
+  }
 
-    public static async listPermissions(listOptions: ListPermissionOptions = {}): Promise<Permission[]> {
-        try {
-            const response = await WarrantClient.httpClient.get({
-                url: "/v1/permissions",
-                params: listOptions,
-            });
+  public static async listPermissionsForUser(
+    userId: string,
+    listOptions: ListPermissionOptions = {}
+  ): Promise<Permission[]> {
+    try {
+      const response = await Auth4FlowClient.httpClient.get({
+        url: `/v1/users/${userId}/permissions`,
+        params: listOptions,
+      });
 
-            return response.map((permission: Permission) => new Permission(permission.permissionId, permission.name, permission.description));
-        } catch (e) {
-            throw e;
-        }
+      return response.map(
+        (permission: Permission) =>
+          new Permission(
+            permission.permissionId,
+            permission.name,
+            permission.description
+          )
+      );
+    } catch (e) {
+      throw e;
     }
+  }
 
-    public static async listPermissionsForUser(userId: string, listOptions: ListPermissionOptions = {}): Promise<Permission[]> {
-        try {
-            const response = await WarrantClient.httpClient.get({
-                url: `/v1/users/${userId}/permissions`,
-                params: listOptions,
-            });
+  public static async assignPermissionToUser(
+    userId: string,
+    permissionId: string
+  ): Promise<Warrant> {
+    return WarrantModule.create({
+      object: {
+        objectType: ObjectType.Permission,
+        objectId: permissionId,
+      },
+      relation: "member",
+      subject: {
+        objectType: ObjectType.User,
+        objectId: userId,
+      },
+    });
+  }
 
-            return response.map((permission: Permission) => new Permission(permission.permissionId, permission.name, permission.description));
-        } catch (e) {
-            throw e;
-        }
+  public static async removePermissionFromUser(
+    userId: string,
+    permissionId: string
+  ): Promise<void> {
+    return WarrantModule.delete({
+      object: {
+        objectType: ObjectType.Permission,
+        objectId: permissionId,
+      },
+      relation: "member",
+      subject: {
+        objectType: ObjectType.User,
+        objectId: userId,
+      },
+    });
+  }
+
+  public static async listPermissionsForRole(
+    roleId: string,
+    listOptions: ListPermissionOptions = {}
+  ): Promise<Permission[]> {
+    try {
+      const response = await Auth4FlowClient.httpClient.get({
+        url: `/v1/roles/${roleId}/permissions`,
+        params: listOptions,
+      });
+
+      return response.map(
+        (permission: Permission) =>
+          new Permission(
+            permission.permissionId,
+            permission.name,
+            permission.description
+          )
+      );
+    } catch (e) {
+      throw e;
     }
+  }
 
-    public static async assignPermissionToUser(userId: string, permissionId: string): Promise<Warrant> {
-        return WarrantModule.create({
-            object: {
-                objectType: ObjectType.Permission,
-                objectId: permissionId,
-            },
-            relation: "member",
-            subject: {
-                objectType: ObjectType.User,
-                objectId: userId,
-            }
-        });
-    }
+  public static async assignPermissionToRole(
+    roleId: string,
+    permissionId: string
+  ): Promise<Warrant> {
+    return WarrantModule.create({
+      object: {
+        objectType: ObjectType.Permission,
+        objectId: permissionId,
+      },
+      relation: "member",
+      subject: {
+        objectType: ObjectType.Role,
+        objectId: roleId,
+      },
+    });
+  }
 
-    public static async removePermissionFromUser(userId: string, permissionId: string): Promise<void> {
-        return WarrantModule.delete({
-            object: {
-                objectType: ObjectType.Permission,
-                objectId: permissionId,
-            },
-            relation: "member",
-            subject: {
-                objectType: ObjectType.User,
-                objectId: userId,
-            }
-        });
-    }
+  public static async removePermissionFromRole(
+    roleId: string,
+    permissionId: string
+  ): Promise<void> {
+    return WarrantModule.delete({
+      object: {
+        objectType: ObjectType.Permission,
+        objectId: permissionId,
+      },
+      relation: "member",
+      subject: {
+        objectType: ObjectType.Role,
+        objectId: roleId,
+      },
+    });
+  }
 
-    public static async listPermissionsForRole(roleId: string, listOptions: ListPermissionOptions = {}): Promise<Permission[]> {
-        try {
-            const response = await WarrantClient.httpClient.get({
-                url: `/v1/roles/${roleId}/permissions`,
-                params: listOptions,
-            });
+  // WarrantObject methods
+  public getObjectType(): string {
+    return ObjectType.Permission;
+  }
 
-            return response.map((permission: Permission) => new Permission(permission.permissionId, permission.name, permission.description));
-        } catch (e) {
-            throw e;
-        }
-    }
-
-    public static async assignPermissionToRole(roleId: string, permissionId: string): Promise<Warrant> {
-        return WarrantModule.create({
-            object: {
-                objectType: ObjectType.Permission,
-                objectId: permissionId,
-            },
-            relation: "member",
-            subject: {
-                objectType: ObjectType.Role,
-                objectId: roleId,
-            }
-        });
-    }
-
-    public static async removePermissionFromRole(roleId: string, permissionId: string): Promise<void> {
-        return WarrantModule.delete({
-            object: {
-                objectType: ObjectType.Permission,
-                objectId: permissionId,
-            },
-            relation: "member",
-            subject: {
-                objectType: ObjectType.Role,
-                objectId: roleId,
-            }
-        });
-    }
-
-    // WarrantObject methods
-    public getObjectType(): string {
-        return ObjectType.Permission;
-    }
-
-    public getObjectId(): string {
-        return this.permissionId;
-    }
+  public getObjectId(): string {
+    return this.permissionId;
+  }
 }

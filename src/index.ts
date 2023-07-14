@@ -5,4 +5,4 @@ export { default as PricingTier } from "./modules/PricingTier";
 export { default as Role } from "./modules/Role";
 export { default as Tenant } from "./modules/Tenant";
 export { default as User } from "./modules/User";
-export { default as WarrantClient } from "./WarrantClient";
+export { default as Auth4FlowClient } from "./Auth4FlowClient";

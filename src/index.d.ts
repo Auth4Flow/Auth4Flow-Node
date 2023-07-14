@@ -9,22 +9,22 @@ import Tenant from "./modules/Tenant";
 import User from "./modules/User";
 import Warrant from "./modules/WarrantModule";
 
-declare module 'warrant' {
-    export class WarrantClient {
-        static WarrantClient: typeof WarrantClient;
+declare module "auth4flow" {
+  export class Auth4FlowClient {
+    static Auth4FlowClient: typeof Auth4FlowClient;
 
-        constructor(config: Config);
+    constructor(config: Config);
 
-        Authorization: typeof Authorization;
-        Feature: typeof Feature;
-        Permission: typeof Permission;
-        PricingTier: typeof PricingTier;
-        Role: typeof Role;
-        Session: typeof Session;
-        Tenant: typeof Tenant;
-        User: typeof User;
-        Warrant: typeof Warrant;
-    }
+    Authorization: typeof Authorization;
+    Feature: typeof Feature;
+    Permission: typeof Permission;
+    PricingTier: typeof PricingTier;
+    Role: typeof Role;
+    Session: typeof Session;
+    Tenant: typeof Tenant;
+    User: typeof User;
+    Warrant: typeof Warrant;
+  }
 
-    export default WarrantClient;
+  export default Auth4FlowClient;
 }
