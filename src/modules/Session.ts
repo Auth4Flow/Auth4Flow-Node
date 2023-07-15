@@ -1,17 +1,17 @@
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import { SELF_SERVICE_DASH_URL_BASE } from "../constants";
 import { SelfServiceSessionParams, SessionParams } from "../types/Session";
 
 export default class Session {
   /**
-   * Verify an authorization session in Auth4Flow is valid
+   * Verify an authorization session in Forge4Flow is valid
    *
    * @param sessionId A session verifcation object containing the sessionId of the logged in user
    * @return A userId or null if the session is invalid
    */
   public static async verifySession(sessionId: string): Promise<string> {
     try {
-      const sess = await Auth4FlowClient.httpClient.post({
+      const sess = await Forge4FlowClient.httpClient.post({
         url: "/v1/session/verify",
         data: {
           sessionId,
@@ -35,7 +35,7 @@ export default class Session {
     session: SessionParams
   ): Promise<string> {
     try {
-      const sess = await Auth4FlowClient.httpClient.post({
+      const sess = await Forge4FlowClient.httpClient.post({
         url: "/v1/sessions",
         data: {
           ...session,
@@ -61,7 +61,7 @@ export default class Session {
     redirectUrl: string
   ): Promise<string> {
     try {
-      const sess = await Auth4FlowClient.httpClient.post({
+      const sess = await Forge4FlowClient.httpClient.post({
         url: "/v1/sessions",
         data: {
           ...session,

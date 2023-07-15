@@ -9,9 +9,9 @@ import Tenant from "./modules/Tenant";
 import User from "./modules/User";
 import Warrant from "./modules/WarrantModule";
 
-declare module "auth4flow" {
-  export class Auth4FlowClient {
-    static Auth4FlowClient: typeof Auth4FlowClient;
+declare module "forge4flow" {
+  export class Forge4FlowClient {
+    static Forge4FlowClient: typeof Forge4FlowClient;
 
     constructor(config: Config);
 
@@ -26,5 +26,5 @@ declare module "auth4flow" {
     Warrant: typeof Warrant;
   }
 
-  export default Auth4FlowClient;
+  export default Forge4FlowClient;
 }

@@ -19,7 +19,7 @@ Import the Warrant client and pass your API key to the constructor to get starte
 
 ```js
 const Warrant = require("@warrantdev/warrant-node");
-const warrantClient = new Warrant.Auth4FlowClient({
+const warrantClient = new Warrant.Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
 });
 ```
@@ -27,8 +27,8 @@ const warrantClient = new Warrant.Auth4FlowClient({
 Or using ES modules:
 
 ```js
-import { Auth4FlowClient } from "@warrantdev/warrant-node";
-const warrantClient = new Auth4FlowClient({
+import { Forge4FlowClient } from "@warrantdev/warrant-node";
+const warrantClient = new Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
 });
 ```
@@ -39,7 +39,7 @@ This method creates a user in Warrant with the provided `userId`. Provide an opt
 
 ```js
 const Warrant = require("@warrantdev/warrant-node");
-const warrantClient = new Warrant.Auth4FlowClient({
+const warrantClient = new Warrant.Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
 });
 
@@ -52,8 +52,8 @@ warrantClient.User.create({ userId: user.id, email: user.email })
 Or using ES modules and async/await:
 
 ```js
-import { Auth4FlowClient } from "@warrantdev/warrant-node";
-const warrantClient = new Auth4FlowClient({
+import { Forge4FlowClient } from "@warrantdev/warrant-node";
+const warrantClient = new Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
 });
 
@@ -72,10 +72,10 @@ const newUser = await warrantClient.User.create({
 The API endpoint the SDK makes requests to is configurable via the `endpoint` attribute when initializing the client:
 
 ```js
-import { Auth4FlowClient } from "@warrantdev/warrant-node";
+import { Forge4FlowClient } from "@warrantdev/warrant-node";
 
 // Set api and authorize endpoints to http://localhost:8000
-const warrantClient = new Auth4FlowClient({
+const warrantClient = new Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
   endpoint: "http://localhost:8000",
 });
@@ -99,7 +99,7 @@ This method returns a `Promise` that resolves with `true` if the `subject` has t
 ```js
 const Warrant = require("@warrantdev/warrant-node");
 
-const warrantClient = new Warrant.Auth4FlowClient({
+const warrantClient = new Warrant.Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
 });
 
@@ -141,9 +141,9 @@ warrantClient.Authorization
 Or using ES modules and async/await:
 
 ```js
-import { Auth4FlowClient } from "@warrantdev/warrant-node";
+import { Forge4FlowClient } from "@warrantdev/warrant-node";
 
-const warrantClient = new Auth4FlowClient({
+const warrantClient = new Forge4FlowClient({
   apiKey: "api_test_f5dsKVeYnVSLHGje44zAygqgqXiLJBICbFzCiAg1E=",
 });
 

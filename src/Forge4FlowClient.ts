@@ -11,7 +11,7 @@ import User from "./modules/User";
 import Warrant from "./modules/WarrantModule";
 import Config from "./types/Config";
 
-export default class Auth4FlowClient {
+export default class Forge4FlowClient {
   static config: Config;
   static httpClient: ApiClient;
 
@@ -26,8 +26,8 @@ export default class Auth4FlowClient {
   public Warrant: typeof Warrant = Warrant;
 
   constructor(config: Config) {
-    Auth4FlowClient.config = config;
-    Auth4FlowClient.httpClient = new ApiClient({
+    Forge4FlowClient.config = config;
+    Forge4FlowClient.httpClient = new ApiClient({
       apiKey: config.apiKey,
       baseUrl: config.endpoint || API_URL_BASE,
     });

@@ -107,7 +107,7 @@ export default class ApiClient implements HttpClient {
     const fetchRequestOptions: FetchRequestOptions = {
       method,
       headers: {
-        "User-Agent": `auth4flow-node/${version}`,
+        "User-Agent": `forge4flow-node/${version}`,
         "Content-Type": "application/json",
       },
     };

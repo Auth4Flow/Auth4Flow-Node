@@ -1,5 +1,5 @@
 import WarrantModule from "./WarrantModule";
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import {
   CreatePermissionParams,
   ListPermissionOptions,
@@ -26,7 +26,7 @@ export default class Permission implements WarrantObject {
     permission: CreatePermissionParams
   ): Promise<Permission> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/permissions",
         data: permission,
       });
@@ -43,7 +43,7 @@ export default class Permission implements WarrantObject {
 
   public static async get(permissionId: string): Promise<Permission> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/permissions/${permissionId}`,
       });
 
@@ -62,7 +62,7 @@ export default class Permission implements WarrantObject {
     permission: UpdatePermissionParams
   ): Promise<Permission> {
     try {
-      const response = await Auth4FlowClient.httpClient.put({
+      const response = await Forge4FlowClient.httpClient.put({
         url: `/v1/permissions/${permissionId}`,
         data: permission,
       });
@@ -79,7 +79,7 @@ export default class Permission implements WarrantObject {
 
   public static async delete(permissionId: string): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: `/v1/permissions/${permissionId}`,
       });
     } catch (e) {
@@ -91,7 +91,7 @@ export default class Permission implements WarrantObject {
     listOptions: ListPermissionOptions = {}
   ): Promise<Permission[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: "/v1/permissions",
         params: listOptions,
       });
@@ -114,7 +114,7 @@ export default class Permission implements WarrantObject {
     listOptions: ListPermissionOptions = {}
   ): Promise<Permission[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/users/${userId}/permissions`,
         params: listOptions,
       });
@@ -171,7 +171,7 @@ export default class Permission implements WarrantObject {
     listOptions: ListPermissionOptions = {}
   ): Promise<Permission[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/roles/${roleId}/permissions`,
         params: listOptions,
       });

@@ -1,5 +1,5 @@
 import WarrantModule from "./WarrantModule";
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import { CreateFeatureParams, ListFeatureOptions } from "../types/Feature";
 import Warrant, { WarrantObject } from "../types/Warrant";
 import { ObjectType } from "../types/ObjectType";
@@ -16,7 +16,7 @@ export default class Feature implements WarrantObject {
   //
   public static async create(feature: CreateFeatureParams): Promise<Feature> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/features",
         data: feature,
       });
@@ -29,7 +29,7 @@ export default class Feature implements WarrantObject {
 
   public static async get(featureId: string): Promise<Feature> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/features/${featureId}`,
       });
 
@@ -41,7 +41,7 @@ export default class Feature implements WarrantObject {
 
   public static async delete(featureId: string): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: `/v1/features/${featureId}`,
       });
     } catch (e) {
@@ -53,7 +53,7 @@ export default class Feature implements WarrantObject {
     listOptions: ListFeatureOptions = {}
   ): Promise<Feature[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: "/v1/features",
         params: listOptions,
       });
@@ -69,7 +69,7 @@ export default class Feature implements WarrantObject {
     listOptions: ListFeatureOptions = {}
   ): Promise<Feature[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/pricing-tiers/${pricingTierId}/features`,
         params: listOptions,
       });
@@ -119,7 +119,7 @@ export default class Feature implements WarrantObject {
     listOptions: ListFeatureOptions = {}
   ): Promise<Feature[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/tenants/${tenantId}/features`,
         params: listOptions,
       });
@@ -169,7 +169,7 @@ export default class Feature implements WarrantObject {
     listOptions: ListFeatureOptions = {}
   ): Promise<Feature[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/users/${userId}/features`,
         params: listOptions,
       });

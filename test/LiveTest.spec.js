@@ -1,14 +1,14 @@
 const {
   SelfServiceStrategy,
   Query,
-  Auth4FlowClient,
+  Forge4FlowClient,
 } = require("../dist/index");
 var assert = require("assert");
 
 // Uncomment .skip and add your API_KEY to run tests
 describe.skip("Live Test", function () {
   before(function () {
-    this.warrant = new Auth4FlowClient({
+    this.warrant = new Forge4FlowClient({
       apiKey: "",
       endpoint: "https://api.warrant.dev",
     });

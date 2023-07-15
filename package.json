@@ -1,7 +1,7 @@
 {
-  "name": "@auth4flow/auth4flow-node",
-  "version": "0.1.0",
-  "description": "Auth4Flow API Wrapper for Node.js clients",
+  "name": "@forge4flow/forge4flow-node",
+  "version": "0.0.1",
+  "description": "Forge4Flow API Wrapper for Node.js clients",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/auth4Flow/auth4Flow-node.git"
+    "url": "git+https://github.com/forge4flow/forge4flow-node.git"
   },
   "keywords": [
     "warrant",
@@ -25,12 +25,12 @@
     "role based access control",
     "access control"
   ],
-  "author": "Auth4Flow",
+  "author": "Forge4Flow",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/auth4Flow/auth4Flow-node/issues"
+    "url": "https://github.com/forge4flow/forge4flow-node/issues"
   },
-  "homepage": "https://github.com/auth4Flow/auth4Flow-node#readme",
+  "homepage": "https://github.com/forge4flow/forge4flow-node#readme",
   "devDependencies": {
     "@types/node": "^18.11.18",
     "mocha": "^10.2.0",

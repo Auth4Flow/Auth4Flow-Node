@@ -1,7 +1,7 @@
 import Authorization from "./Authorization";
 import Feature from "./Feature";
 import WarrantModule from "./WarrantModule";
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import { ListFeatureOptions } from "../types/Feature";
 import { ObjectType } from "../types/ObjectType";
 import {
@@ -24,7 +24,7 @@ export default class PricingTier implements WarrantObject {
     pricingTier: CreatePricingTierParams
   ): Promise<PricingTier> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/pricing-tiers",
         data: pricingTier,
       });
@@ -37,7 +37,7 @@ export default class PricingTier implements WarrantObject {
 
   public static async get(pricingTierId: string): Promise<PricingTier> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/pricing-tiers/${pricingTierId}`,
       });
 
@@ -49,7 +49,7 @@ export default class PricingTier implements WarrantObject {
 
   public static async delete(pricingTierId: string): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: `/v1/pricing-tiers/${pricingTierId}`,
       });
     } catch (e) {
@@ -61,7 +61,7 @@ export default class PricingTier implements WarrantObject {
     listOptions: ListPricingTierOptions = {}
   ): Promise<PricingTier[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: "/v1/pricing-tiers",
         params: listOptions,
       });
@@ -79,7 +79,7 @@ export default class PricingTier implements WarrantObject {
     listOptions: ListPricingTierOptions = {}
   ): Promise<PricingTier[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/tenants/${tenantId}/pricing-tiers`,
         params: listOptions,
       });
@@ -131,7 +131,7 @@ export default class PricingTier implements WarrantObject {
     listOptions: ListPricingTierOptions = {}
   ): Promise<PricingTier[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/users/${userId}/pricing-tiers`,
         params: listOptions,
       });

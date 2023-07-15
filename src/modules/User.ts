@@ -4,7 +4,7 @@ import Permission from "./Permission";
 import PricingTier from "./PricingTier";
 import Role from "./Role";
 import Tenant from "./Tenant";
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import Warrant from "./WarrantModule";
 import { ListFeatureOptions } from "../types/Feature";
 import { ObjectType } from "../types/ObjectType";
@@ -36,7 +36,7 @@ export default class User implements WarrantObject {
   //
   public static async create(user: CreateUserParams = {}): Promise<User> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/users",
         data: user,
       });
@@ -49,7 +49,7 @@ export default class User implements WarrantObject {
 
   public static async batchCreate(users: CreateUserParams[]): Promise<User[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/users",
         data: users,
       });
@@ -62,7 +62,7 @@ export default class User implements WarrantObject {
 
   public static async get(userId: string): Promise<User> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/users/${userId}`,
       });
 
@@ -77,7 +77,7 @@ export default class User implements WarrantObject {
     user: UpdateUserParams
   ): Promise<User> {
     try {
-      const response = await Auth4FlowClient.httpClient.put({
+      const response = await Forge4FlowClient.httpClient.put({
         url: `/v1/users/${userId}`,
         data: user,
       });
@@ -90,7 +90,7 @@ export default class User implements WarrantObject {
 
   public static async delete(userId: string): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: `/v1/users/${userId}`,
       });
     } catch (e) {
@@ -102,7 +102,7 @@ export default class User implements WarrantObject {
     listOptions: ListUserOptions = {}
   ): Promise<User[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: "/v1/users",
         params: listOptions,
       });
@@ -121,7 +121,7 @@ export default class User implements WarrantObject {
     listOptions: ListUserOptions = {}
   ): Promise<User[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/tenants/${tenantId}/users`,
         params: listOptions,
       });

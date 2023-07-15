@@ -1,7 +1,7 @@
 import Authorization from "./Authorization";
 import Permission from "./Permission";
 import WarrantModule from "./WarrantModule";
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import { ObjectType } from "../types/ObjectType";
 import { ListPermissionOptions } from "../types/Permission";
 import {
@@ -27,7 +27,7 @@ export default class Role implements WarrantObject {
   //
   public static async create(role: CreateRoleParams): Promise<Role> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/roles",
         data: role,
       });
@@ -40,7 +40,7 @@ export default class Role implements WarrantObject {
 
   public static async get(roleId: string): Promise<Role> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/roles/${roleId}`,
       });
 
@@ -55,7 +55,7 @@ export default class Role implements WarrantObject {
     role: UpdateRoleParams
   ): Promise<Role> {
     try {
-      const response = await Auth4FlowClient.httpClient.put({
+      const response = await Forge4FlowClient.httpClient.put({
         url: `/v1/roles/${roleId}`,
         data: role,
       });
@@ -68,7 +68,7 @@ export default class Role implements WarrantObject {
 
   public static async delete(roleId: string): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: `/v1/roles/${roleId}`,
       });
     } catch (e) {
@@ -80,7 +80,7 @@ export default class Role implements WarrantObject {
     listOptions: ListRoleOptions = {}
   ): Promise<Role[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: "/v1/roles",
         params: listOptions,
       });
@@ -98,7 +98,7 @@ export default class Role implements WarrantObject {
     listOptions: ListRoleOptions = {}
   ): Promise<Role[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/users/${userId}/roles`,
         params: listOptions,
       });

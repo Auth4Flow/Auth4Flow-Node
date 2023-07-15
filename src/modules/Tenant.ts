@@ -2,7 +2,7 @@ import Authorization from "./Authorization";
 import Feature from "./Feature";
 import PricingTier from "./PricingTier";
 import User from "./User";
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import Warrant from "./WarrantModule";
 import { ListFeatureOptions } from "../types/Feature";
 import { ObjectType } from "../types/ObjectType";
@@ -30,7 +30,7 @@ export default class Tenant implements WarrantObject {
   //
   public static async create(tenant: CreateTenantParams = {}): Promise<Tenant> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/tenants",
         data: tenant,
       });
@@ -45,7 +45,7 @@ export default class Tenant implements WarrantObject {
     tenants: CreateTenantParams[]
   ): Promise<Tenant[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.post({
+      const response = await Forge4FlowClient.httpClient.post({
         url: "/v1/tenants",
         data: tenants,
       });
@@ -60,7 +60,7 @@ export default class Tenant implements WarrantObject {
 
   public static async get(tenantId: string): Promise<Tenant> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/tenants/${tenantId}`,
       });
 
@@ -75,7 +75,7 @@ export default class Tenant implements WarrantObject {
     tenant: UpdateTenantParams
   ): Promise<Tenant> {
     try {
-      const response = await Auth4FlowClient.httpClient.put({
+      const response = await Forge4FlowClient.httpClient.put({
         url: `/v1/tenants/${tenantId}`,
         data: tenant,
       });
@@ -88,7 +88,7 @@ export default class Tenant implements WarrantObject {
 
   public static async delete(tenantId: string): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: `/v1/tenants/${tenantId}`,
       });
     } catch (e) {
@@ -100,7 +100,7 @@ export default class Tenant implements WarrantObject {
     listOptions: ListTenantOptions = {}
   ): Promise<Tenant[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: "/v1/tenants",
         params: listOptions,
       });
@@ -118,7 +118,7 @@ export default class Tenant implements WarrantObject {
     listOptions: ListTenantOptions = {}
   ): Promise<Tenant[]> {
     try {
-      const response = await Auth4FlowClient.httpClient.get({
+      const response = await Forge4FlowClient.httpClient.get({
         url: `/v1/users/${userId}/tenants`,
         params: listOptions,
       });

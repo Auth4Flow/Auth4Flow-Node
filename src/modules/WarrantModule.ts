@@ -1,4 +1,4 @@
-import Auth4FlowClient from "../Auth4FlowClient";
+import Forge4FlowClient from "../Forge4FlowClient";
 import Query from "../types/Query";
 import Warrant, {
   isSubject,
@@ -10,7 +10,7 @@ import Warrant, {
 export default class WarrantModule {
   public static async create(warrant: WarrantParams): Promise<Warrant> {
     try {
-      return await Auth4FlowClient.httpClient.post({
+      return await Forge4FlowClient.httpClient.post({
         url: "/v1/warrants",
         data: {
           objectType: isWarrantObject(warrant.object)
@@ -36,7 +36,7 @@ export default class WarrantModule {
 
   public static async delete(warrant: WarrantParams): Promise<void> {
     try {
-      return await Auth4FlowClient.httpClient.delete({
+      return await Forge4FlowClient.httpClient.delete({
         url: "/v1/warrants",
         data: {
           objectType: isWarrantObject(warrant.object)
@@ -65,7 +65,7 @@ export default class WarrantModule {
     listOptions: ListWarrantOptions = {}
   ): Promise<Warrant[]> {
     try {
-      return await Auth4FlowClient.httpClient.get({
+      return await Forge4FlowClient.httpClient.get({
         url: "/v1/query",
         params: {
           ...query.toObject(),
