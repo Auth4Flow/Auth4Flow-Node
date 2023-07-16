@@ -41,7 +41,7 @@ export default class Authorization {
   }
 
   public static async checkMany(check: CheckMany): Promise<boolean> {
-    let warrants: Warrant[] = check.warrants.map((warrant) => {
+    const warrants: Warrant[] = check.warrants.map((warrant) => {
       return {
         objectType: isWarrantObject(warrant.object)
           ? warrant.object.getObjectType()

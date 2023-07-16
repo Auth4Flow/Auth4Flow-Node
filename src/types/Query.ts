@@ -46,7 +46,7 @@ export default class Query {
     }
 
     public toObject(): Object {
-        let queryParams: { [key: string]: string } = {};
+        const queryParams: { [key: string]: string } = {};
 
         queryParams["select"] = this.selectClause;
 
