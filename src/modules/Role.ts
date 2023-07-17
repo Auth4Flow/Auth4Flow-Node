@@ -15,11 +15,18 @@ export default class Role implements WarrantObject {
   roleId: string;
   name?: string;
   description?: string;
+  createdAt?: Date;
 
-  constructor(roleId: string, name?: string, description?: string) {
+  constructor(
+    roleId: string,
+    name?: string,
+    description?: string,
+    createdAt?: Date
+  ) {
     this.roleId = roleId;
     this.name = name;
     this.description = description;
+    this.createdAt = createdAt;
   }
 
   //
@@ -32,7 +39,12 @@ export default class Role implements WarrantObject {
         data: role,
       });
 
-      return new Role(response.roleId, response.name, response.description);
+      return new Role(
+        response.roleId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -44,7 +56,12 @@ export default class Role implements WarrantObject {
         url: `/v1/roles/${roleId}`,
       });
 
-      return new Role(response.roleId, response.name, response.description);
+      return new Role(
+        response.roleId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -60,7 +77,12 @@ export default class Role implements WarrantObject {
         data: role,
       });
 
-      return new Role(response.roleId, response.name, response.description);
+      return new Role(
+        response.roleId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -86,7 +108,8 @@ export default class Role implements WarrantObject {
       });
 
       return response.map(
-        (role: Role) => new Role(role.roleId, role.name, role.description)
+        (role: Role) =>
+          new Role(role.roleId, role.name, role.description, response.createdAt)
       );
     } catch (e) {
       throw e;
@@ -104,7 +127,8 @@ export default class Role implements WarrantObject {
       });
 
       return response.map(
-        (role: Role) => new Role(role.roleId, role.name, role.description)
+        (role: Role) =>
+          new Role(role.roleId, role.name, role.description, response.createdAt)
       );
     } catch (e) {
       throw e;
