@@ -1,6 +1,6 @@
 {
   "name": "@forge4flow/forge4flow-node",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Forge4Flow API Wrapper for Node.js clients",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
