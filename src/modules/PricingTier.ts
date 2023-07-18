@@ -114,10 +114,10 @@ export default class PricingTier implements WarrantObject {
       return response.map(
         (pricingTier: PricingTier) =>
           new PricingTier(
-            response.pricingTierId,
-            response.name,
-            response.description,
-            response.createdAt
+            pricingTier.pricingTierId,
+            pricingTier.name,
+            pricingTier.description,
+            pricingTier.createdAt
           )
       );
     } catch (e) {
@@ -172,10 +172,10 @@ export default class PricingTier implements WarrantObject {
       return response.map(
         (pricingTier: PricingTier) =>
           new PricingTier(
-            response.pricingTierId,
-            response.name,
-            response.description,
-            response.createdAt
+            pricingTier.pricingTierId,
+            pricingTier.name,
+            pricingTier.description,
+            pricingTier.createdAt
           )
       );
     } catch (e) {

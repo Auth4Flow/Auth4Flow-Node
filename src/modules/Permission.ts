@@ -12,11 +12,18 @@ export default class Permission implements WarrantObject {
   permissionId: string;
   name?: string;
   description?: string;
+  createdAt?: Date;
 
-  constructor(permissionId: string, name?: string, description?: string) {
+  constructor(
+    permissionId: string,
+    name?: string,
+    description?: string,
+    createdAt?: Date
+  ) {
     this.permissionId = permissionId;
     this.name = name;
     this.description = description;
+    this.createdAt = createdAt;
   }
 
   //
@@ -34,7 +41,8 @@ export default class Permission implements WarrantObject {
       return new Permission(
         response.permissionId,
         response.name,
-        response.description
+        response.description,
+        response.createdAt
       );
     } catch (e) {
       throw e;
@@ -50,7 +58,8 @@ export default class Permission implements WarrantObject {
       return new Permission(
         response.permissionId,
         response.name,
-        response.description
+        response.description,
+        response.createdAt
       );
     } catch (e) {
       throw e;
@@ -101,7 +110,8 @@ export default class Permission implements WarrantObject {
           new Permission(
             permission.permissionId,
             permission.name,
-            permission.description
+            permission.description,
+            permission.createdAt
           )
       );
     } catch (e) {
@@ -124,7 +134,8 @@ export default class Permission implements WarrantObject {
           new Permission(
             permission.permissionId,
             permission.name,
-            permission.description
+            permission.description,
+            permission.createdAt
           )
       );
     } catch (e) {
@@ -181,7 +192,8 @@ export default class Permission implements WarrantObject {
           new Permission(
             permission.permissionId,
             permission.name,
-            permission.description
+            permission.description,
+            permission.createdAt
           )
       );
     } catch (e) {

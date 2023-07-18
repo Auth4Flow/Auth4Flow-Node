@@ -106,10 +106,10 @@ export default class Feature implements WarrantObject {
       return response.map(
         (feature: Feature) =>
           new Feature(
-            response.featureId,
-            response.name,
-            response.description,
-            response.createdAt
+            feature.featureId,
+            feature.name,
+            feature.description,
+            feature.createdAt
           )
       );
     } catch (e) {
@@ -164,10 +164,10 @@ export default class Feature implements WarrantObject {
       return response.map(
         (feature: Feature) =>
           new Feature(
-            response.featureId,
-            response.name,
-            response.description,
-            response.createdAt
+            feature.featureId,
+            feature.name,
+            feature.description,
+            feature.createdAt
           )
       );
     } catch (e) {
@@ -222,10 +222,10 @@ export default class Feature implements WarrantObject {
       return response.map(
         (feature: Feature) =>
           new Feature(
-            response.featureId,
-            response.name,
-            response.description,
-            response.createdAt
+            feature.featureId,
+            feature.name,
+            feature.description,
+            feature.createdAt
           )
       );
     } catch (e) {

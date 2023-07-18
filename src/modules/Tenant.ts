@@ -110,7 +110,7 @@ export default class Tenant implements WarrantObject {
 
       return response.map(
         (tenant: Tenant) =>
-          new Tenant(response.tenantId, response.name, response.createdAt)
+          new Tenant(tenant.tenantId, tenant.name, tenant.createdAt)
       );
     } catch (e) {
       throw e;
@@ -129,7 +129,7 @@ export default class Tenant implements WarrantObject {
 
       return response.map(
         (tenant: Tenant) =>
-          new Tenant(response.tenantId, response.name, response.createdAt)
+          new Tenant(tenant.tenantId, tenant.name, tenant.createdAt)
       );
     } catch (e) {
       throw e;
