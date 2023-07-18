@@ -12,9 +12,20 @@ import Warrant, { Context, WarrantObject } from "../types/Warrant";
 
 export default class PricingTier implements WarrantObject {
   pricingTierId: string;
+  name?: string;
+  description?: string;
+  createdAt?: Date;
 
-  constructor(pricingTierId: string) {
+  constructor(
+    pricingTierId: string,
+    name?: string,
+    description?: string,
+    createdAt?: Date
+  ) {
     this.pricingTierId = pricingTierId;
+    this.name = name;
+    this.description = description;
+    this.createdAt = createdAt;
   }
 
   //
@@ -29,7 +40,12 @@ export default class PricingTier implements WarrantObject {
         data: pricingTier,
       });
 
-      return new PricingTier(response.pricingTierId);
+      return new PricingTier(
+        response.pricingTierId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -41,7 +57,12 @@ export default class PricingTier implements WarrantObject {
         url: `/v1/pricing-tiers/${pricingTierId}`,
       });
 
-      return new PricingTier(response.pricingTierId);
+      return new PricingTier(
+        response.pricingTierId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -67,7 +88,13 @@ export default class PricingTier implements WarrantObject {
       });
 
       return response.map(
-        (pricingTier: PricingTier) => new PricingTier(pricingTier.pricingTierId)
+        (pricingTier: PricingTier) =>
+          new PricingTier(
+            response.pricingTierId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
       );
     } catch (e) {
       throw e;
@@ -85,7 +112,13 @@ export default class PricingTier implements WarrantObject {
       });
 
       return response.map(
-        (pricingTier: PricingTier) => new PricingTier(pricingTier.pricingTierId)
+        (pricingTier: PricingTier) =>
+          new PricingTier(
+            response.pricingTierId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
       );
     } catch (e) {
       throw e;
@@ -137,7 +170,13 @@ export default class PricingTier implements WarrantObject {
       });
 
       return response.map(
-        (pricingTier: PricingTier) => new PricingTier(pricingTier.pricingTierId)
+        (pricingTier: PricingTier) =>
+          new PricingTier(
+            response.pricingTierId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
       );
     } catch (e) {
       throw e;

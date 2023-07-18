@@ -6,9 +6,20 @@ import { ObjectType } from "../types/ObjectType";
 
 export default class Feature implements WarrantObject {
   featureId: string;
+  name?: string;
+  description?: string;
+  createdAt?: Date;
 
-  constructor(featureId: string) {
+  constructor(
+    featureId: string,
+    name?: string,
+    description?: string,
+    createdAt?: Date
+  ) {
     this.featureId = featureId;
+    this.name = name;
+    this.description = description;
+    this.createdAt = createdAt;
   }
 
   //
@@ -21,7 +32,12 @@ export default class Feature implements WarrantObject {
         data: feature,
       });
 
-      return new Feature(response.featureId);
+      return new Feature(
+        response.featureId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -33,7 +49,12 @@ export default class Feature implements WarrantObject {
         url: `/v1/features/${featureId}`,
       });
 
-      return new Feature(response.featureId);
+      return new Feature(
+        response.featureId,
+        response.name,
+        response.description,
+        response.createdAt
+      );
     } catch (e) {
       throw e;
     }
@@ -58,7 +79,15 @@ export default class Feature implements WarrantObject {
         params: listOptions,
       });
 
-      return response.map((feature: Feature) => new Feature(feature.featureId));
+      return response.map(
+        (feature: Feature) =>
+          new Feature(
+            response.featureId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
+      );
     } catch (e) {
       throw e;
     }
@@ -74,7 +103,15 @@ export default class Feature implements WarrantObject {
         params: listOptions,
       });
 
-      return response.map((feature: Feature) => new Feature(feature.featureId));
+      return response.map(
+        (feature: Feature) =>
+          new Feature(
+            response.featureId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
+      );
     } catch (e) {
       throw e;
     }
@@ -124,7 +161,15 @@ export default class Feature implements WarrantObject {
         params: listOptions,
       });
 
-      return response.map((feature: Feature) => new Feature(feature.featureId));
+      return response.map(
+        (feature: Feature) =>
+          new Feature(
+            response.featureId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
+      );
     } catch (e) {
       throw e;
     }
@@ -174,7 +219,15 @@ export default class Feature implements WarrantObject {
         params: listOptions,
       });
 
-      return response.map((feature: Feature) => new Feature(feature.featureId));
+      return response.map(
+        (feature: Feature) =>
+          new Feature(
+            response.featureId,
+            response.name,
+            response.description,
+            response.createdAt
+          )
+      );
     } catch (e) {
       throw e;
     }

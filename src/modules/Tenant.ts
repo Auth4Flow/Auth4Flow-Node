@@ -19,10 +19,12 @@ export default class Tenant implements WarrantObject {
   // Tenant properties
   tenantId: string;
   name?: string;
+  createdAt?: Date;
 
-  constructor(tenantId: string, name?: string) {
+  constructor(tenantId: string, name?: string, createdAt?: Date) {
     this.tenantId = tenantId;
     this.name = name;
+    this.createdAt = createdAt;
   }
 
   //
@@ -35,7 +37,7 @@ export default class Tenant implements WarrantObject {
         data: tenant,
       });
 
-      return new Tenant(response.tenantId, response.name);
+      return new Tenant(response.tenantId, response.name, response.createdAt);
     } catch (e) {
       throw e;
     }
@@ -51,7 +53,8 @@ export default class Tenant implements WarrantObject {
       });
 
       return response.map(
-        (tenant: Tenant) => new Tenant(tenant.tenantId, tenant.name)
+        (tenant: Tenant) =>
+          new Tenant(response.tenantId, response.name, response.createdAt)
       );
     } catch (e) {
       throw e;
@@ -64,7 +67,7 @@ export default class Tenant implements WarrantObject {
         url: `/v1/tenants/${tenantId}`,
       });
 
-      return new Tenant(response.tenantId, response.name);
+      return new Tenant(response.tenantId, response.name, response.createdAt);
     } catch (e) {
       throw e;
     }
@@ -80,7 +83,7 @@ export default class Tenant implements WarrantObject {
         data: tenant,
       });
 
-      return new Tenant(response.tenantId, response.name);
+      return new Tenant(response.tenantId, response.name, response.createdAt);
     } catch (e) {
       throw e;
     }
@@ -106,7 +109,8 @@ export default class Tenant implements WarrantObject {
       });
 
       return response.map(
-        (tenant: Tenant) => new Tenant(tenant.tenantId, tenant.name)
+        (tenant: Tenant) =>
+          new Tenant(response.tenantId, response.name, response.createdAt)
       );
     } catch (e) {
       throw e;
@@ -124,7 +128,8 @@ export default class Tenant implements WarrantObject {
       });
 
       return response.map(
-        (tenant: Tenant) => new Tenant(tenant.tenantId, tenant.name)
+        (tenant: Tenant) =>
+          new Tenant(response.tenantId, response.name, response.createdAt)
       );
     } catch (e) {
       throw e;
